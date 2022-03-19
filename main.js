@@ -1,8 +1,8 @@
 const url = "https://www.moneycontrol.com/stocks/marketstats/bse-mostactive-stocks/all-companies-97/";
 
-const request = require("request");
-const cheerio = require("cheerio");
-const prompt = require("prompt-sync")();
+const request = require("request"); // to get html data
+const cheerio = require("cheerio"); // to select specific elements from page
+const prompt = require("prompt-sync")(); // for taking console user prompt
 
 request(url, cb);
 
@@ -44,6 +44,7 @@ function working_fn(html) {
     if (idx != -1) {
         let cnt = true;
         while (cnt == true) {
+            setTimeout(() => { console.log('....'); }, 2000);
             let ch = parseInt(prompt(`Enter the choice:
             1. Highest Value
             2. Lowest Value
@@ -51,7 +52,7 @@ function working_fn(html) {
             4. Price Value
             5. Change Percentage
             6. Group of Stock
-            0.Exit
+            0 .Exit
             `));
             switch (ch) {
                 case 1:
@@ -86,7 +87,8 @@ function working_fn(html) {
                     cnt = false;
                     break;
                 default:
-                    alert('Wrong choice');
+                    console.log('Wrong choice');
+                    break;
             }
         }
 

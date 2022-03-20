@@ -15,6 +15,17 @@ function cb(err, response, html) {
     }
 }
 
+function validate_company(company_name, arr) {
+    let f = -1;
+    for (let i = 0; i < arr.length; i++) {
+        if (company_name.replaceAll(' ', '').toLowerCase() == arr[i].CompanyName.replaceAll(' ', '')) {
+            f = i;
+            return i;
+        }
+    }
+    return f;
+
+}
 
 function working_fn(html) {
     let $ = cheerio.load(html);
@@ -43,9 +54,8 @@ function working_fn(html) {
     let idx = validate_company(company_name, arr)
     if (idx != -1) {
         let cnt = true;
-        while (cnt == true) {
-            setTimeout(() => { console.log('....'); }, 2000);
-            let ch = parseInt(prompt(`Enter the choice:
+        console.log(
+            `Enter the choice:
             1. Highest Value
             2. Lowest Value
             3. Last Value
@@ -53,7 +63,11 @@ function working_fn(html) {
             5. Change Percentage
             6. Group of Stock
             0 .Exit
-            `));
+            `
+        );
+        while (cnt == true) {
+            // setTimeout(() => { console.log('....'); }, 2000);
+            let ch = parseInt(prompt(''));
             switch (ch) {
                 case 1:
                     console.log(`For the company ${arr[idx].CompanyName.toUpperCase()} High is :
@@ -85,6 +99,7 @@ function working_fn(html) {
                     break;
                 case 0:
                     cnt = false;
+                    console.log('Thank you for using !! Have a nice Day');
                     break;
                 default:
                     console.log('Wrong choice');
@@ -98,18 +113,5 @@ function working_fn(html) {
     }
 
 
-
-}
-
-
-function validate_company(company_name, arr) {
-    let f = -1;
-    for (let i = 0; i < arr.length; i++) {
-        if (company_name.replaceAll(' ', '').toLowerCase() == arr[i].CompanyName.replaceAll(' ', '')) {
-            f = i;
-            return i;
-        }
-    }
-    return f;
 
 }
